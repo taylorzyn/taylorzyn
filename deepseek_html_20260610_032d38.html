@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Методичка • AMAZING BLACK RP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-primary: #08090c;
+      --bg-card: #12151a;
+      --bg-sidebar: #0b0d12;
+      --border: #1e2229;
+      --text-primary: #eaecef;
+      --text-secondary: #a0a7b5;
+      --text-muted: #6a7078;
+      --accent: #a684e6;
+      --red-bright: #f85149;
+      --green: #3fb950;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --sidebar-width: 280px;
+      --transition: 0.25s ease;
+    }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      position: relative;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        radial-gradient(circle at 30% 50%, rgba(130, 80, 200, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 20%, rgba(50, 60, 100, 0.08) 0%, transparent 50%);
+      background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iLjAzIi8+PC9zdmc+');
+      opacity: 0.3; pointer-events: none; z-index: 0;
+    }
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
+      background-color: rgba(11, 13, 18, 0.85); backdrop-filter: blur(15px);
+      border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 100;
+      transition: transform var(--transition); overflow-y: auto;
+    }
+    .sidebar-header { padding: 28px 20px 20px; border-bottom: 1px solid var(--border); }
+    .sidebar-header h2 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; color: #ffffff; margin-bottom: 6px; }
+    .sidebar-header .subtitle { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; font-weight: 500; }
+    .search-box { margin: 16px; position: relative; }
+    .search-box input {
+      width: 100%; background-color: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);
+      color: var(--text-primary); padding: 10px 14px 10px 38px; border-radius: 8px;
+      font-size: 0.85rem; outline: none; transition: var(--transition);
+    }
+    .search-box input:focus { border-color: var(--accent); background-color: rgba(255, 255, 255, 0.06); }
+    .search-box .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1rem; }
+    .nav-list { list-style: none; padding: 8px 12px; flex: 1; }
+    .nav-list li { margin-bottom: 2px; }
+    .nav-list a {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      color: var(--text-secondary); text-decoration: none; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500; transition: all var(--transition); cursor: pointer;
+    }
+    .nav-list a:hover { background-color: rgba(255, 255, 255, 0.04); color: #ffffff; }
+    .nav-list a.active { background-color: rgba(130, 80, 200, 0.1); color: var(--accent); font-weight: 600; }
+    .nav-list .icon { font-size: 1.1rem; width: 22px; text-align: center; }
+    .main-content {
+      margin-left: var(--sidebar-width); flex: 1; padding: 32px 40px 80px;
+      max-width: 1100px; width: 100%; position: relative; z-index: 1;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    .section-header { margin-bottom: 32px; }
+    .section-header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; color: #ffffff; margin-bottom: 8px; }
+    .section-header .breadcrumb { font-size: 0.85rem; color: var(--text-muted); }
+    .tabs { display: flex; gap: 4px; margin-bottom: 28px; border-bottom: 1px solid var(--border); padding-bottom: 0; flex-wrap: wrap; }
+    .tab-btn {
+      background: none; border: none; color: var(--text-muted); font-family: var(--font-sans);
+      font-size: 0.9rem; font-weight: 500; padding: 10px 20px; cursor: pointer;
+      border-bottom: 2px solid transparent; transition: all var(--transition); margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--text-primary); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-content { display: none; animation: fadeIn 0.3s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .card {
+      background-color: rgba(18, 21, 26, 0.7); backdrop-filter: blur(10px);
+      border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px;
+      transition: all var(--transition); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card:hover { border-color: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
+    .card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; color: #ffffff; display: flex; align-items: center; gap: 10px; }
+    .card p, .card li { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px; }
+    .card ul, .card ol { padding-left: 24px; margin-bottom: 12px; }
+    .card ul li, .card ol li { margin-bottom: 6px; }
+    .code-block {
+      background-color: rgba(0, 0, 0, 0.4); border: 1px solid var(--border);
+      border-radius: 8px; padding: 16px 20px; font-family: var(--font-mono);
+      font-size: 0.8rem; color: #bcc4cd; white-space: pre-wrap; overflow-x: auto; margin: 12px 0;
+    }
+    .warning {
+      background-color: rgba(248, 81, 73, 0.08); border-left: 3px solid var(--red-bright);
+      padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 0.85rem; color: var(--red-bright);
+    }
+    .note {
+      background-color: rgba(130, 80, 200, 0.08); border-left: 3px solid var(--accent);
+      padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 0.85rem; color: var(--accent);
+    }
+    .placeholder-img {
+      background-color: rgba(255, 255, 255, 0.02); border: 1px dashed var(--border);
+      border-radius: 8px; height: 140px; display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 0.75rem; margin: 12px 0;
+    }
+    .site-footer {
+      position: fixed; bottom: 20px; left: 24px; text-align: left; color: #5f6875;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em; z-index: 5; line-height: 1.6;
+      background: rgba(8, 9, 12, 0.7); backdrop-filter: blur(5px); padding: 8px 14px;
+      border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); transition: all var(--transition);
+    }
+    .site-footer:hover { color: #a0a7b5; border-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+    .site-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .site-footer a:hover { text-decoration: underline; }
+    .watermark-badge {
+      position: fixed; bottom: 20px; left: 24px;
+      background: rgba(18, 21, 26, 0.6); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;
+      color: var(--text-secondary); letter-spacing: 0.02em; z-index: 105;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); pointer-events: auto;
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    .watermark-badge span { color: var(--accent); font-weight: 600; }
+    .watermark-badge:hover {
+      transform: translateY(-3px); background: rgba(18, 21, 26, 0.8);
+      border-color: rgba(166, 132, 230, 0.3); box-shadow: 0 6px 20px rgba(130, 80, 200, 0.15);
+    }
+    .menu-toggle { display: none; position: fixed; top: 14px; left: 14px; z-index: 200; background: var(--bg-sidebar); border: 1px solid var(--border); color: var(--text-primary); padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 1.3rem; }
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main-content { margin-left: 0; padding: 24px 18px 80px; }
+      .menu-toggle { display: block; }
+      .site-footer { left: 12px; bottom: 12px; font-size: 0.65rem; padding: 6px 10px; }
+      .watermark-badge { left: 12px; bottom: 12px; font-size: 0.7rem; padding: 6px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="menu-toggle" id="menuToggle" aria-label="Меню">☰</button>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header"><h2>📋 МЕТОДИЧКА</h2><div class="subtitle">AMAZING BLACK RP</div></div>
+    <div class="search-box"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="Поиск по разделам..."></div>
+    <ul class="nav-list">
+      <li><a data-section="svu" class="active"><span class="icon">💣</span> СВУ / Разминирование</a></li>
+      <li><a data-section="pdp"><span class="icon">🏥</span> Первая помощь (ПДП)</a></li>
+      <li><a data-section="assault"><span class="icon">⚔️</span> Штурм</a></li>
+      <li><a data-section="negotiations"><span class="icon">🎙️</span> Переговоры</a></li>
+      <li><a data-section="stretch"><span class="icon">🪤</span> Растяжки</a></li>
+      <li><a data-section="mines"><span class="icon">💥</span> Мины</a></li>
+      <li><a data-section="rp"><span class="icon">📝</span> RP Отыгровки</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content" id="mainContent">
+    <div class="section-header"><h1 id="sectionTitle">СВУ / Разминирование</h1><div class="breadcrumb">Главная / <span id="breadcrumbPath">СВУ</span></div></div>
+    <div class="tabs" id="tabsContainer"></div>
+    <div id="tabContentArea"></div>
+  </main>
+
+  <div class="watermark-badge">Created by: <span>Brian_Taylor</span></div>
+
+  <script>
+    (function() {
+      const contentData = {
+        svu: {
+          title: 'СВУ / Разминирование', breadcrumb: 'СВУ',
+          tabs: [
+            { id: 'theory', label: '📘 Термины и матчасть' },
+            { id: 'algorithm', label: '⚙️ Алгоритмы обезвреживания' },
+            { id: 'rp_do', label: '🎮 RP-отыгровка (/do и /me)' },
+            { id: 'gear', label: '🎒 Снаряжение' }
+          ],
+          content: {
+            theory: `
+              <div class="card"><h3>💣 Взрывное устройство (ВУ)</h3><p>Техническое устройство одноразового применения, обладающее способностью взрываться. Изготовлено особым образом. Предназначено для поражения или уничтожения людей, а также повреждения объектов. Состоит из заряда взрывчатого вещества (ВВ) и средства его взрывания.</p></div>
+              <div class="card"><h3>🧨 Самодельное взрывное устройство (СВУ)</h3><p>Изготовлено в кустарных условиях. В составе: ВВ (в т.ч. имитационные и пиротехнические средства), горючие составы, средства инициирования. Делится на <strong>механическое</strong> (подрыв от физического воздействия) и <strong>дистанционное C4</strong> (подрыв по радиосигналу или таймеру).</p></div>
+              <div class="card"><h3>📋 Типы взрывных устройств</h3><ol><li>Самодельное взрывное устройство (СВУ).</li><li>Пояс смертника.</li><li>Растяжки.</li><li>Мины.</li></ol></div>
+              <div class="card"><h3>🔧 Справочник устройств</h3><ul><li><strong>БРВУ «Пелена 12-М»</strong> — блокиратор радиосигналов в радиусе 60 метров. Глушилка. Включается первым.</li><li><strong>ДРП (Детектор радиопомех)</strong> — три лампы: красная (15-30м), жёлтая (5-15м), зелёная (0-5м).</li><li><strong>КТЗ «Дублон-2»</strong> — костюм телесной защиты сапёра.</li><li><strong>ЭТЦ-3</strong> — тяжёлый контейнер (до 360 кг). Для дальних перевозок. Альтернатива — ЭТЦ-1 (лёгкий).</li><li><strong>Локализатор «Фонтан-2»</strong> — лёгкий контейнер (30-40 кг).</li><li><strong>Детонатор</strong> — устройство для передачи напряжения в медную проволоку при контролируемом подрыве.</li></ul></div>
+              <div class="card"><h3>⚡ Иерархия проводов</h3><ol><li><strong>Фазный</strong> (+23.6…+23.9В) — питание. Режется первым.</li><li><strong>Заземление</strong> (0В, жёлто-зелёный) — замыкает цепь. Режется вторым.</li><li><strong>Телемеханика</strong> (0-5В нестабильно) — антенна, только в С4. Режется третьим.</li><li><strong>Дискретный</strong> (0В) — провод таймера. Если таймера нет — отсутствует. Режется четвёртым.</li><li><strong>Минусовой</strong> (-23.6…-23.9В) — обратная цепь. Режется последним.</li></ol><div class="note">Механика: + → 0 → дискрет → -</div><div class="note">С4: + → 0 → телемех → дискрет → -</div></div>
+            `,
+            algorithm: `
+              <div class="card"><h3>📋 Общие правила обезвреживания</h3><ol><li>Убедиться, что нет гражданских и угрозы жизни.</li><li>Снять бронежилет, каску, разгрузку. Надеть КТЗ и резиновые перчатки.</li><li>Установить и включить БРВУ.</li><li>Найти ВУ (ДРП или визуально).</li><li>Внимательно осмотреть, определить тип.</li><li>Приступить к обезвреживанию.</li></ol><div class="warning">Если таймер показывает менее 3 минут — разминирование запрещено! Выброс в море или карьер.</div></div>
+              <div class="card"><h3>🔍 Обезвреживание СВУ дистанционного типа (С4)</h3><p><strong>Порядок действий:</strong></p><ol><li>По приезду осмотреть территорию.</li><li>Сложить обмундирование в багажник. Надеть КТЗ и резиновые перчатки.</li><li>Установить и включить БРВУ.</li><li>Если расположение неизвестно — поиск с ДРП.</li><li>Обнаружив — расположить кейс сапёра в 1 метре от СВУ.</li><li>Включить фонарик, осмотреть СВУ. Если закрыто крышкой — открепить её.</li><li>Просветить внутренности. Узнать количество проводов.</li><li>Проверить наличие таймера и значение.</li><li>Достать мультиметр. Режим DC 200V.</li><li>Прозвонить каждый провод: красный щуп к первому проводу, чёрный ко второму.</li><li>Перекусить провода по иерархии: Фазный → Заземление → Телемеханика → Дискретный (если есть) → Минусовой. Итог: СВУ обесточено.</li><li>Поднести контейнер. Ножом извлечь тротиловую шашку, шашку взрывателя, капсюль. Итог: СВУ обезврежено.</li><li>Уложить компоненты в контейнер. Вывезти на полигон ВЧ для контролируемого подрыва.</li></ol></div>
+              <div class="card"><h3>🔧 Обезвреживание СВУ механического типа</h3><p>Алгоритм полностью совпадает с С4, за исключением: провод «Телемеханика» отсутствует. Иерархия: Фазный → Заземление → Дискретный (если есть таймер) → Минусовой.</p></div>
+              <div class="card"><h3>💀 Обезвреживание Пояса смертника</h3><ol><li>По приезду осмотреть территорию. Снять обмундирование. Надеть КТЗ и перчатки.</li><li>Включить БРВУ.</li><li>Осмотреть человека с поясом. <strong>Если без сознания — сначала обезвредить ВУ, потом ПП.</strong></li><li>Расположить кейс в 1 метре. Включить фонарик, осмотреть.</li><li>Если пояс закрыт крышкой — открепить. Просветить внутренности, узнать количество проводов и наличие таймера.</li><li>Мультиметр DC 200V. Прозвон каждого провода.</li><li>Перекусить по иерархии: Фазный → Заземление → Телемеханика → Дискретный → Минусовой.</li><li>Обесточили — извлечь тротиловую шашку, взрыватель, капсюль.</li><li>Компоненты в контейнер. Снять пояс с человека, утилизировать. Вывезти на полигон ВЧ.</li></ol></div>
+              <div class="card"><h3>💥 Контролируемый подрыв</h3><ol><li>Выкопать яму глубиной 2-3 м у бетонной стены на полигоне ВЧ.</li><li>Поместить ВУ в яму (собрать в обратном порядке).</li><li>Подсоединить медную проволоку одним концом к ВУ.</li><li>Закопать. Протянуть проволоку на 100 метров.</li><li>Подключить детонатор ко второму концу.</li><li>Лечь за укрытие. Нажать кнопку. Итог: ВУ взорвано.</li></ol></div>
+            `,
+            rp_do: `
+              <div class="card"><h3>👥 RP-отыгровка сапёра</h3><p>Работа с ВУ — последовательный процесс. Нельзя «открыть СВУ» или «обезвредить» одной командой. Все действия через /do и /me. Спешка или пропуск этапов делает отыгровку недействительной.</p></div>
+              <div class="card"><h3>📝 Команды /me (описание действий)</h3><ul><li><code>/me медленно опускается на колено перед объектом, включает налобный фонарик.</code></li><li><code>/me достаёт из кейса мультиметр и выставляет режим DC 200V.</code></li><li><code>/me аккуратно прикладывает красный щуп к первому контакту, чёрный — к корпусу.</code></li><li><code>/me изолированным ножом осторожно поддевает край крышки, приподнимая на 2-3 см.</code></li><li><code>/me замирает, заметив тонкую леску, уходящую под корпус.</code></li><li><code>/me плавно обхватывает корпус гранаты, просовывая палец в кольцо чеки.</code></li><li><code>/me бокорезами перекусывает фазный провод.</code></li></ul></div>
+              <div class="card"><h3>🔍 Команды /do (запрос информации)</h3><p><strong>Осмотр корпуса:</strong></p><ul><li><code>/do Есть ли корпус у устройства?</code></li><li><code>/do Из какого материала корпус?</code></li><li><code>/do Сколько болтов на корпусе?</code></li><li><code>/do Есть ли крышка?</code></li><li><code>/do Есть ли напряжение на корпусе?</code></li></ul><p><strong>Вскрытие:</strong></p><ul><li><code>/do Под крышкой есть леска или натяжной механизм?</code></li></ul><p><strong>Внутренности:</strong></p><ul><li><code>/do Сколько проводов внутри?</code></li><li><code>/do Есть ли таймер? Какое значение?</code></li><li><code>/do Какого цвета провод №X?</code></li><li><code>/do Какое напряжение на проводе №X?</code></li></ul></div>
+              <div class="card"><h3>🎬 Пример полной сцены</h3><div class="code-block">/me опускается на колено перед объектом, включает налобный фонарик.
+/do Есть ли корпус у устройства?
+... ответ: да, металлический корпус на четырёх болтах ...
+/me достаёт мультиметр, выставляет DC 200V.
+/do Есть ли напряжение на корпусе?
+... ответ: да, +23.8В ...
+/me кивает. «Фазный на корпусе.» Берёт бокорезы.
+/me аккуратно перекусывает фазный провод.</div></div>
+            `,
+            gear: `
+              <div class="card"><h3>🎒 Набор сапёра</h3><p><strong>В кейсе (носить с собой):</strong></p><ul><li>Изолированный нож</li><li>ДРП</li><li>Индикаторная отвёртка</li><li>Фонарик</li><li>Мультиметр</li><li>Бокорезы</li><li>Резиновые перчатки</li></ul><p><strong>В багажнике служебного транспорта:</strong></p><ul><li>Взрывозащитный контейнер «ЭТЦ-3»</li><li>Локализатор «Фонтан-2»</li><li>БРВУ «Пелена 12-М»</li><li>КТЗ «Дублон-2»</li><li>Катушка с медной проволокой</li><li>Детонатор</li></ul><div class="note">P.S. В сам кейс сапёра входит всё, кроме ЭТЦ-3, Фонтан-2, БРВУ, КТЗ, катушки и детонатора.</div></div>
+            `
+          }
+        },
+        pdp: {
+          title: 'Первая помощь (ПДП)', breadcrumb: 'ПДП',
+          tabs: [
+            { id: 'theory', label: '📘 Теория' },
+            { id: 'algorithm', label: '⚙️ Алгоритм' },
+            { id: 'rp', label: '🎮 Отыгровки' }
+          ],
+          content: {
+            theory: `
+              <div class="card"><h3>🩺 Первая помощь (ПП)</h3><p>Комплекс срочных мероприятий до оказания медицинской помощи, направленный на сохранение жизни и здоровья граждан. Оказывается до приезда СМП.</p><div class="warning">Запрещено давать пострадавшему любые медикаменты, антибиотики, обезболивающее (возможна аллергическая реакция).</div></div>
+              <div class="card"><h3>📋 Перечень состояний для оказания ПП</h3><ul><li>Отсутствие сознания.</li><li>Остановка дыхания или кровообращения.</li><li>Наружные кровотечения.</li><li>Инородные тела верхних дыхательных путей.</li><li>Травмы различных областей тела.</li><li>Ожоги, воздействие высоких температур.</li><li>Обморожение, воздействие низких температур.</li><li>Отравления.</li><li>Пулевое, осколочное или ножевое ранение.</li></ul></div>
+              <div class="card"><h3>🩸 Виды кровотечений</h3><ul><li><strong>Капиллярное</strong> (лёгкая степень) — небольшая потеря крови.</li><li><strong>Венозное</strong> (средняя степень) — тёмно-вишнёвая кровь, вытекает ручьём. Потеря до 1 литра.</li><li><strong>Артериальное</strong> (тяжёлая степень) — ярко-красная, пульсирует. Потеря 150 мл/мин.</li><li><strong>Смешанное</strong> — при отрыве конечности.</li><li><strong>Паренхиматозное (внутреннее)</strong> — слабость, бледность, головокружение, учащение пульса.</li></ul><p>У здорового человека в среднем 4-5 литров крови.</p></div>
+              <div class="card"><h3>🩺 Правила тампонада и жгута</h3><p><strong>Тампонад:</strong> 1 слой — стерильная салфетка, 2 — плотный слой ваты, 3 — закрепить салфеткой и плотно завязать.</p><p><strong>Жгут:</strong> первые два тура тугие. Накладывается поверх одежды или ткани. Максимум 60 минут. Обязательно записка со временем наложения.</p></div>
+            `,
+            algorithm: `
+              <div class="card"><h3>⚙️ Алгоритм оказания первой помощи</h3><ol><li>Обеспечить безопасность себе, осмотреть обстановку. Затем — безопасность пострадавшему.</li><li>Проверить пульс, дыхание, реакцию зрачков на свет (для проверки дыхания — запрокинуть голову, наклониться ко рту/носу, слушать 10 секунд).</li><li>Вызвать специалистов (медиков).</li><li>Оказать неотложную помощь: восстановление дыхательных путей, СЛР, остановка кровотечения.</li><li>Обеспечить максимальный комфорт.</li></ol></div>
+              <div class="card"><h3>🫀 Сердечно-лёгочная реанимация (СЛР)</h3><ol><li>Оценить безопасность.</li><li>Проверить сознание (потормошить за плечи, громко спросить).</li><li>Проверить дыхание (запрокинуть голову, 10 секунд слушать/чувствовать).</li><li>Вызвать скорую.</li><li>30 надавливаний на грудину (глубина 5-6 см, 100-120/мин).</li><li>2 вдоха искусственного дыхания (зажать нос, выдох 1 секунда).</li><li>Чередовать 30:2.</li></ol><p><strong>Прекардиальный удар:</strong> 30-60 секунд после остановки сердца. Прикрыть мечевидный отросток. Удар кулаком с 20-30 см. Нет пульса — СЛР.</p></div>
+              <div class="card"><h3>🔥 Ожоги</h3><p>Степени: 1 — покраснение, 2 — пузыри, 3 — омертвение, 4 — обугливание. Действия: прекратить воздействие, промыть холодной водой 15-20 минут, стерильная повязка. Запрещено прокалывать пузыри, наносить мазь/масло.</p></div>
+              <div class="card"><h3>❄️ Обморожение</h3><p>Уйти в тепло. Вызвать 103. Осторожно растирать. Согревающая повязка. Горячий чай. Запрещено: быстро согревать, растирать снегом, алкоголь.</p></div>
+              <div class="card"><h3>🦴 Переломы</h3><p><strong>Закрытый:</strong> неподвижность, шина, холодный компресс, покой. <strong>Открытый:</strong> остановить кровь, обработать вокруг раны, стерильная салфетка на перелом, шина (кость не вправлять).</p><p>Шина: твёрдый предмет с двух сторон конечности, плотно зафиксировать.</p></div>
+            `,
+            rp: `
+              <div class="card"><h3>🎮 RP-отыгровка при оказании ПП</h3><p>Все действия выполняются через /me и /do. Нельзя одной командой «вылечить» человека.</p><div class="code-block">/me опускается на колено рядом с пострадавшим.
+/do Пострадавший дышит?
+/me проверяет пульс на сонной артерии.
+/do Пульс прощупывается?
+/me достаёт бинт из аптечки.
+/me накладывает давящую повязку на рану.</div></div>
+            `
+          }
+        },
+        assault: {
+          title: 'Штурм', breadcrumb: 'Штурм',
+          tabs: [
+            { id: 'theory', label: '📘 Тактика' },
+            { id: 'commands', label: '📢 Команды' }
+          ],
+          content: {
+            theory: `
+              <div class="card"><h3>⚔️ Штурм</h3><p>Способ овладения укреплённой позицией. Быстрое и часто неожиданное нападение силами, превосходящими противника в уровне подготовки или численности.</p></div>
+              <div class="card"><h3>👥 Штурмовые группы</h3><ul><li><strong>Штурмовая:</strong> двойки/тройки. ОСН, ФСБ.</li><li><strong>Закрепления:</strong> удержание точек. ОУР, СР.</li><li><strong>Резерв:</strong> треть сил. ОБ ППС, ОБ ГАИ.</li><li><strong>Мобильная:</strong> перекрытие отхода.</li></ul></div>
+              <div class="card"><h3>🎯 Классификация</h3><p><strong>По цели:</strong> полицейский (сохранение заложников), армейский (уничтожение).</p><p><strong>По способу:</strong> скрытное проникновение, динамичная атака.</p></div>
+              <div class="card"><h3>🗺️ Тактические схемы</h3><p><strong>Крючок, Крест, Угол-1/2, Диагональ, Четвёрка, Смежный.</strong> Подробное описание каждой схемы доступно в расширенной методичке.</p></div>
+            `,
+            commands: `
+              <div class="card"><h3>📢 Базовые команды</h3><ul><li><strong>Контакт</strong> — обнаружен противник.</li><li><strong>Движение</strong> — замечено перемещение.</li><li><strong>Работаю</strong> — веду огонь.</li><li><strong>Красный</strong> — кончился боезапас.</li><li><strong>Зелёный</strong> — готов к действию.</li><li><strong>Держу</strong> — контролирую сектор.</li><li><strong>Давлю</strong> — подавляю огнём.</li><li><strong>Чисто</strong> — зона обезврежена.</li><li><strong>Своя</strong> — бросаю гранату.</li><li><strong>Граната</strong> — противник кидает гранату.</li></ul></div>
+              <div class="card"><h3>🧭 Координация</h3><p><strong>Движение:</strong> Пошли, Стой, Отходим.</p><p><strong>Направления:</strong> по часам. 3 часа — справа, 9 — слева, 6 — позади.</p></div>
+            `
+          }
+        },
+        negotiations: {
+          title: 'Переговоры', breadcrumb: 'Переговоры',
+          tabs: [
+            { id: 'theory', label: '📘 Теория' },
+            { id: 'algorithm', label: '⚙️ Алгоритм' }
+          ],
+          content: {
+            theory: `
+              <div class="card"><h3>🎙️ Цели переговоров</h3><ul><li>Узнать количество захватчиков/заложников (F5 → PetSlotsUsed).</li><li>Собрать информацию о транспорте и внешнем виде преступников.</li><li>Затянуть время для сбора спецподразделений.</li><li>Записать все требования, уточнить детали передачи заложника.</li><li>Обязательно проверить состояние потерпевшего.</li></ul></div>
+            `,
+            algorithm: `
+              <div class="card"><h3>📋 Последовательность действий</h3><ol><li>Снять обмундирование, КПК, телефон, рацию. Взять поддельное удостоверение.</li><li>Прибыть на точку, медленно подходить: <code>/s Я на переговоры. Оружия у меня нет.</code></li><li>Когда заметят — поднять руки: <code>/anim 12</code></li><li>Повторить, что вы переговорщик. Зафиксировать требования.</li><li>Попросить показать заложника, поговорить с ним.</li><li>Вернуться на ОШ. Передать информацию.</li></ol></div>
+              <div class="card"><h3>❓ Вопросы для диалога</h3><ol><li>Какие у вас требования? (номинал, валюта, передача)</li><li>Сколько времени на выполнение?</li><li>Нужен ли зелёный коридор? Куда?</li><li>Как передадут заложника?</li><li>Есть ли ВУ на территории/на заложнике? <code>/do Есть ли ВУ?</code></li></ol></div>
+            `
+          }
+        },
+        stretch: {
+          title: 'Растяжки', breadcrumb: 'Растяжки',
+          tabs: [{ id: 'algorithm', label: '⚙️ Обезвреживание' }],
+          content: {
+            algorithm: `
+              <div class="card"><h3>🪤 Растяжки</h3><p>Мина-ловушка с использованием лески или проволоки. При натяжении (разрыве) происходит взрыв.</p></div>
+              <div class="card"><h3>Одна граната</h3><ol><li>Заметил элемент — замереть, подать знак группе.</li><li>Визуально найти все части мины.</li><li>Обхватить корпус гранаты, палец в кольцо чеки.</li><li>Сжать гранату, медленно наклонять в сторону натянутой лески (контролировать кольцо).</li><li>Прижать чеку сильнее, отрезать леску.</li><li>Обмотать леску вокруг чеки. Итог: обезврежена.</li></ol></div>
+              <div class="card"><h3>Две гранаты</h3><p>Напарник фиксирует вторую гранату (без чеки). Первую обезвреживаем по стандартной схеме. Вторую — подорвать в безопасном месте.</p><div class="warning">Граната не государственная. Может быть без задержки. Лучше подорвать все найденные гранаты на месте.</div></div>
+            `
+          }
+        },
+        mines: {
+          title: 'Мины', breadcrumb: 'Мины',
+          tabs: [{ id: 'algorithm', label: '⚙️ Обезвреживание' }],
+          content: {
+            algorithm: `
+              <div class="card"><h3>💥 Мины</h3><p>Скрытно установленное ВУ. Корпус, запал/детонатор, заряд ВВ, поражающие элементы. Может иметь часовой механизм.</p></div>
+              <div class="card"><h3>📋 Порядок действий</h3><ol><li>По приезду осмотреть территорию. Снять обмундирование. Надеть КТЗ и перчатки.</li><li>Достать миноискатель, включить.</li><li>Обнаружив мину — перерезать проволоку (шнур), идущую к мине, не дёргая и не натягивая.</li><li>Осмотреть на наличие второй проволоки.</li><li>Снять маскирующий слой. Вставить чеку (гвоздь) в отверстия штоков ударников.</li><li>Подцепить мину крюком или петлёй. С расстояния 30-50 м вытянуть из грунта.</li><li>Вывинтить взрыватель против часовой стрелки.</li><li>Отложить мину, обозначить знаком. Итог: обезврежена.</li></ol><div class="warning">Мины нажимного действия других типов — не извлекать. Подрыв шашкой на месте.</div></div>
+            `
+          }
+        },
+        rp: {
+          title: 'RP Отыгровки', breadcrumb: 'RP Отыгровки',
+          tabs: [{ id: 'general', label: '📝 Общие правила' }],
+          content: {
+            general: `
+              <div class="card"><h3>📝 Основные правила RP-отыгровки</h3><p>Вся коммуникация в игре происходит через команды /me (описание действия от третьего лица), /do (запрос информации) и /s (разговор в ближнем радиусе). Отыгровка должна быть последовательной и реалистичной.</p></div>
+              <div class="card"><h3>🎮 Примеры правильной отыгровки</h3><div class="code-block">/me достаёт удостоверение и показывает его.
+/s Стоять! Полиция!
+/do Видит ли он моё удостоверение?
+/me кладёт руку на кобуру.
+/do Я слышу шум за дверью?</div></div>
+            `
+          }
+        }
+      };
+
+      let currentSection = 'svu';
+      let currentTab = 'theory';
+
+      const sidebar = document.getElementById('sidebar');
+      const menuToggle = document.getElementById('menuToggle');
+      const searchInput = document.getElementById('searchInput');
+      const navLinks = document.querySelectorAll('.nav-list a');
+      const sectionTitle = document.getElementById('sectionTitle');
+      const breadcrumbPath = document.getElementById('breadcrumbPath');
+      const tabsContainer = document.getElementById('tabsContainer');
+      const tabContentArea = document.getElementById('tabContentArea');
+
+      function init() {
+        renderSection();
+        menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+        document.addEventListener('click', (e) => {
+          if (!sidebar.contains(e.target) && e.target !== menuToggle && sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+          }
+        });
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            currentSection = this.getAttribute('data-section');
+            const data = contentData[currentSection];
+            currentTab = data.tabs && data.tabs.length > 0 ? data.tabs[0].id : '';
+            renderSection();
+            if (window.innerWidth <= 768) sidebar.classList.remove('open');
+          });
+        });
+        searchInput.addEventListener('input', function() {
+          const query = this.value.toLowerCase();
+          navLinks.forEach(link => {
+            link.parentElement.style.display = link.textContent.toLowerCase().includes(query) ? 'block' : 'none';
+          });
+        });
+      }
+
+      function renderSection() {
+        const data = contentData[currentSection];
+        sectionTitle.textContent = data.title;
+        breadcrumbPath.textContent = data.breadcrumb;
+        tabsContainer.innerHTML = '';
+        if (data.tabs && data.tabs.length > 0) {
+          data.tabs.forEach(tab => {
+            const btn = document.createElement('button');
+            btn.className = `tab-btn ${tab.id === currentTab ? 'active' : ''}`;
+            btn.textContent = tab.label;
+            btn.addEventListener('click', () => {
+              currentTab = tab.id;
+              document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+              renderContent();
+            });
+            tabsContainer.appendChild(btn);
+          });
+          renderContent();
+        } else {
+          tabContentArea.innerHTML = '<div class="card"><p>Раздел находится в разработке.</p></div>';
+        }
+      }
+
+      function renderContent() {
+        const data = contentData[currentSection];
+        tabContentArea.innerHTML = data.content[currentTab] || '<div class="card"><p>Нет содержимого.</p></div>';
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
