@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Методичка • AMAZING BLACK RP</title>
+  <title>TAYLORZYN • Методичка</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,49 +15,181 @@
     }
 
     :root {
-      --bg-primary: #08090c;
-      --bg-card: #12151a;
-      --bg-sidebar: #0b0d12;
-      --border: #1e2229;
-      --text-primary: #eaecef;
-      --text-secondary: #a0a7b5;
-      --text-muted: #6a7078;
-      --accent: #a684e6;
-      --red-bright: #f85149;
-      --green: #3fb950;
-      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
-      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #b400ff;
+      --red-bright: #ff3131;
+      --green: #00ff88;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Rajdhani', sans-serif;
       --sidebar-width: 280px;
       --transition: 0.25s ease;
     }
 
     body {
       font-family: var(--font-sans);
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
+      background: #0a0a0a;
+      color: #e0e0e0;
       line-height: 1.6;
       min-height: 100vh;
-      display: flex;
-      position: relative;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        radial-gradient(circle at 30% 50%, rgba(130, 80, 200, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 70% 20%, rgba(50, 60, 100, 0.08) 0%, transparent 50%);
-      background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
+      overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
+    /* ---------- ЛЕНДИНГ (КОСМОС) ---------- */
+    #landing {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iLjAzIi8+PC9zdmc+');
-      opacity: 0.3;
+      height: 100vh;
+      background: radial-gradient(ellipse at center, #0d0d1f 0%, #020208 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      overflow: hidden;
+    }
+
+    #landing.hidden {
+      opacity: 0;
       pointer-events: none;
-      z-index: 0;
+      transform: scale(1.05);
+    }
+
+    .cosmos-stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .neon-planet {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at 30% 30%, #00f0ff, #b400ff, #0a0a2e);
+      border-radius: 50%;
+      box-shadow: 0 0 50px rgba(0, 240, 255, 0.6), 0 0 150px rgba(180, 0, 255, 0.4), inset 0 -20px 40px rgba(0,0,0,0.6);
+      margin-bottom: 20px;
+      animation: float 4s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .landing-title {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.7), 0 0 40px rgba(180, 0, 255, 0.6);
+      z-index: 1;
+      margin-bottom: 10px;
+    }
+
+    .landing-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--accent-cyan);
+      letter-spacing: 0.2em;
+      margin-bottom: 40px;
+      z-index: 1;
+    }
+
+    .btn-enter {
+      background: transparent;
+      border: 2px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding: 12px 30px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-enter:hover {
+      background: var(--accent-cyan);
+      color: #000;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .social-links {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+      z-index: 2;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 8px 14px;
+      border-radius: 4px;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    }
+
+    .watermark-landing {
+      position: absolute;
+      bottom: 20px;
+      left: 24px;
+      color: rgba(255,255,255,0.3);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+
+    .watermark-landing span {
+      color: var(--accent-cyan);
+    }
+
+    /* ---------- ОСНОВНОЙ ИНТЕРФЕЙС ---------- */
+    #app {
+      display: flex;
+      min-height: 100vh;
     }
 
     .sidebar {
@@ -66,9 +198,9 @@
       left: 0;
       width: var(--sidebar-width);
       height: 100vh;
-      background-color: rgba(11, 13, 18, 0.85);
-      backdrop-filter: blur(15px);
-      border-right: 1px solid var(--border);
+      background-color: rgba(5, 5, 15, 0.85);
+      backdrop-filter: blur(25px);
+      border-right: 1px solid rgba(0, 240, 255, 0.15);
       display: flex;
       flex-direction: column;
       z-index: 100;
@@ -78,20 +210,23 @@
 
     .sidebar-header {
       padding: 28px 20px 20px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
     }
 
     .sidebar-header h2 {
-      font-size: 1.2rem;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      color: #ffffff;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
       margin-bottom: 6px;
     }
 
     .sidebar-header .subtitle {
+      font-family: var(--font-sans);
       font-size: 0.7rem;
-      color: var(--text-muted);
+      color: #6a6a7a;
       letter-spacing: 0.06em;
       font-weight: 500;
     }
@@ -104,17 +239,18 @@
     .search-box input {
       width: 100%;
       background-color: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      color: #e0e0e0;
       padding: 10px 14px 10px 38px;
-      border-radius: 8px;
+      border-radius: 4px;
+      font-family: var(--font-sans);
       font-size: 0.85rem;
       outline: none;
       transition: var(--transition);
     }
 
     .search-box input:focus {
-      border-color: var(--accent);
+      border-color: var(--accent-cyan);
       background-color: rgba(255, 255, 255, 0.06);
     }
 
@@ -123,7 +259,7 @@
       left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-muted);
+      color: #6a6a7a;
       font-size: 1rem;
     }
 
@@ -142,30 +278,37 @@
       align-items: center;
       gap: 12px;
       padding: 10px 14px;
-      color: var(--text-secondary);
+      color: #a0a0b0;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 4px;
+      font-family: var(--font-sans);
       font-size: 0.9rem;
       font-weight: 500;
       transition: all var(--transition);
       cursor: pointer;
+      border: 1px solid transparent;
     }
 
     .nav-list a:hover {
-      background-color: rgba(255, 255, 255, 0.04);
+      background-color: rgba(0, 240, 255, 0.04);
+      border-color: rgba(0, 240, 255, 0.2);
       color: #ffffff;
     }
 
     .nav-list a.active {
-      background-color: rgba(130, 80, 200, 0.1);
-      color: var(--accent);
+      background-color: rgba(180, 0, 255, 0.08);
+      border-color: rgba(180, 0, 255, 0.3);
+      color: var(--accent-cyan);
       font-weight: 600;
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.1) inset;
     }
 
     .nav-list .icon {
       font-size: 1.1rem;
       width: 22px;
       text-align: center;
+      color: var(--accent-purple);
+      text-shadow: 0 0 6px rgba(180, 0, 255, 0.5);
     }
 
     .main-content {
@@ -176,7 +319,6 @@
       width: 100%;
       position: relative;
       z-index: 1;
-      animation: fadeInUp 0.5s ease-out;
     }
 
     .section-header {
@@ -184,31 +326,34 @@
     }
 
     .section-header h1 {
+      font-family: var(--font-display);
       font-size: 2rem;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       color: #ffffff;
       margin-bottom: 8px;
+      text-shadow: 0 0 10px rgba(180, 0, 255, 0.3);
     }
 
     .section-header .breadcrumb {
+      font-family: var(--font-mono);
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: #6a6a7a;
     }
 
     .tabs {
       display: flex;
       gap: 4px;
       margin-bottom: 28px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #1e2229;
       padding-bottom: 0;
     }
 
     .tab-btn {
       background: none;
       border: none;
-      color: var(--text-muted);
-      font-family: var(--font-sans);
+      color: #6a6a7a;
+      font-family: var(--font-display);
       font-size: 0.9rem;
       font-weight: 500;
       padding: 10px 20px;
@@ -219,50 +364,45 @@
     }
 
     .tab-btn:hover {
-      color: var(--text-primary);
+      color: var(--accent-cyan);
     }
 
     .tab-btn.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-
-    .tab-content {
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      color: var(--accent-cyan);
+      border-bottom-color: var(--accent-cyan);
     }
 
     .card {
-      background-color: rgba(18, 21, 26, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background-color: rgba(10, 10, 20, 0.7);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 8px;
       padding: 24px;
       margin-bottom: 20px;
-      transition: all var(--transition);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent-purple), transparent);
+      opacity: 0.5;
     }
 
     .card:hover {
-      border-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(0, 240, 255, 0.3);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
     .card h3 {
+      font-family: var(--font-display);
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 16px;
@@ -273,7 +413,8 @@
     }
 
     .card p, .card li {
-      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      color: #a0a0b0;
       font-size: 0.9rem;
       margin-bottom: 8px;
     }
@@ -288,9 +429,9 @@
     }
 
     .code-block {
-      background-color: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 4px;
       padding: 16px 20px;
       font-family: var(--font-mono);
       font-size: 0.8rem;
@@ -301,23 +442,25 @@
     }
 
     .warning {
-      background-color: rgba(248, 81, 73, 0.08);
+      background-color: rgba(255, 49, 49, 0.06);
       border-left: 3px solid var(--red-bright);
       padding: 12px 16px;
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 4px 4px 0;
       margin: 16px 0;
+      font-family: var(--font-mono);
       font-size: 0.85rem;
       color: var(--red-bright);
     }
 
     .note {
-      background-color: rgba(130, 80, 200, 0.08);
-      border-left: 3px solid var(--accent);
+      background-color: rgba(0, 240, 255, 0.04);
+      border-left: 3px solid var(--accent-cyan);
       padding: 12px 16px;
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 4px 4px 0;
       margin: 16px 0;
+      font-family: var(--font-sans);
       font-size: 0.85rem;
-      color: var(--accent);
+      color: var(--accent-cyan);
     }
 
     .tactic-grid {
@@ -329,10 +472,10 @@
     }
 
     .tactic-card {
-      background-color: rgba(18, 21, 26, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background-color: rgba(10, 10, 20, 0.7);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 8px;
       padding: 18px;
       transition: all var(--transition);
       display: flex;
@@ -340,11 +483,12 @@
     }
 
     .tactic-card:hover {
-      border-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(0, 240, 255, 0.3);
       transform: translateY(-2px);
     }
 
     .tactic-card h4 {
+      font-family: var(--font-display);
       color: #ffffff;
       margin-bottom: 10px;
       font-size: 1rem;
@@ -354,21 +498,8 @@
       width: 100%;
       height: 180px;
       object-fit: contain;
-      border-radius: 8px;
+      border-radius: 4px;
       margin-top: auto;
-    }
-
-    .placeholder-img {
-      background-color: rgba(255, 255, 255, 0.02);
-      border: 1px dashed var(--border);
-      border-radius: 8px;
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      margin: 12px 0;
     }
 
     .site-footer {
@@ -377,6 +508,7 @@
       left: 24px;
       text-align: left;
       color: #5f6875;
+      font-family: var(--font-mono);
       font-size: 0.7rem;
       font-weight: 500;
       letter-spacing: 0.04em;
@@ -385,7 +517,7 @@
       background: rgba(8, 9, 12, 0.7);
       backdrop-filter: blur(5px);
       padding: 8px 14px;
-      border-radius: 8px;
+      border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.05);
       transition: all var(--transition);
     }
@@ -397,7 +529,7 @@
     }
 
     .site-footer a {
-      color: var(--accent);
+      color: var(--accent-cyan);
       text-decoration: none;
       font-weight: 600;
     }
@@ -413,12 +545,13 @@
       background: rgba(18, 21, 26, 0.6);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.1);
       padding: 8px 14px;
-      border-radius: 8px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: #a0a0b0;
       letter-spacing: 0.02em;
       z-index: 105;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
@@ -427,15 +560,15 @@
     }
 
     .watermark-badge span {
-      color: var(--accent);
+      color: var(--accent-cyan);
       font-weight: 600;
     }
 
     .watermark-badge:hover {
       transform: translateY(-3px);
       background: rgba(18, 21, 26, 0.8);
-      border-color: rgba(166, 132, 230, 0.3);
-      box-shadow: 0 6px 20px rgba(130, 80, 200, 0.15);
+      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 240, 255, 0.15);
     }
 
     .menu-toggle {
@@ -444,11 +577,11 @@
       top: 14px;
       left: 14px;
       z-index: 200;
-      background: var(--bg-sidebar);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
+      background: #0b0d12;
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      color: #e0e0e0;
       padding: 8px 10px;
-      border-radius: 8px;
+      border-radius: 4px;
       cursor: pointer;
       font-size: 1.3rem;
     }
@@ -471,7 +604,7 @@
         grid-template-columns: 1fr;
       }
       .section-header h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
       }
       .site-footer {
         left: 12px;
@@ -485,51 +618,106 @@
         font-size: 0.7rem;
         padding: 6px 12px;
       }
+      .landing-title {
+        font-size: 2rem;
+      }
+      .social-links {
+        top: 10px;
+        right: 10px;
+        gap: 8px;
+      }
+      .social-link {
+        padding: 6px 10px;
+        font-size: 0.6rem;
+      }
     }
   </style>
 </head>
 <body>
-  <button class="menu-toggle" id="menuToggle" aria-label="Меню">☰</button>
-
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h2>📋 МЕТОДИЧКА</h2>
-      <div class="subtitle">AMAZING BLACK RP</div>
+  <!-- ЛЕНДИНГ -->
+  <div id="landing">
+    <div class="cosmos-stars" id="starsContainer"></div>
+    <div class="social-links">
+      <a href="https://t.me/TAYLORZYN" target="_blank" class="social-link">
+        <span>📡</span> Telegram
+      </a>
+      <a href="https://www.youtube.com/@TAYLORZYN" target="_blank" class="social-link">
+        <span>🎬</span> YouTube
+      </a>
     </div>
-    <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Поиск по разделам...">
+    <div class="neon-planet"></div>
+    <div class="landing-title">TAYLORZYN</div>
+    <div class="landing-subtitle">оперативный узел</div>
+    <button class="btn-enter" onclick="enterSite()">Учебный материал</button>
+    <div class="watermark-landing">
+      Created by: <span>Brian_Taylor</span>
     </div>
-    <ul class="nav-list">
-      <li><a data-section="svu" class="active"><span class="icon">💣</span> СВУ / Разминирование</a></li>
-      <li><a data-section="pdp"><span class="icon">🏥</span> Первая помощь (ПДП)</a></li>
-      <li><a data-section="assault"><span class="icon">⚔️</span> Штурм</a></li>
-      <li><a data-section="negotiations"><span class="icon">🎙️</span> Переговоры</a></li>
-      <li><a data-section="stretch"><span class="icon">🪤</span> Растяжки</a></li>
-      <li><a data-section="radio"><span class="icon">📻</span> Рация департамента</a></li>
-      <li><a data-section="rp"><span class="icon">📝</span> RP Отыгровки</a></li>
-      <li><a data-section="dictionary"><span class="icon">📖</span> Справочник (НПА)</a></li>
-    </ul>
-  </aside>
-
-  <main class="main-content" id="mainContent">
-    <div class="section-header">
-      <h1 id="sectionTitle">СВУ / Разминирование</h1>
-      <div class="breadcrumb">Главная / <span id="breadcrumbPath">СВУ</span></div>
-    </div>
-    <div class="tabs" id="tabsContainer"></div>
-    <div id="tabContentArea"></div>
-  </main>
-
-  <div class="site-footer">
-    Created by: <a href="#" target="_blank">Brian_Taylor</a>
   </div>
 
-  <div class="watermark-badge">
-    Created by: <span>Brian_Taylor</span>
+  <!-- ОСНОВНОЙ ИНТЕРФЕЙС (МЕТОДИЧКА) -->
+  <div id="app" style="display: none;">
+    <button class="menu-toggle" id="menuToggle" aria-label="Меню">☰</button>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>📋 МЕТОДИЧКА</h2>
+        <div class="subtitle">AMAZING BLACK RP</div>
+      </div>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Поиск по разделам...">
+      </div>
+      <ul class="nav-list">
+        <li><a data-section="svu" class="active"><span class="icon">💣</span> СВУ / Разминирование</a></li>
+        <li><a data-section="pdp"><span class="icon">🏥</span> Первая помощь (ПДП)</a></li>
+        <li><a data-section="assault"><span class="icon">⚔️</span> Штурм</a></li>
+        <li><a data-section="negotiations"><span class="icon">🎙️</span> Переговоры</a></li>
+        <li><a data-section="stretch"><span class="icon">🪤</span> Растяжки</a></li>
+        <li><a data-section="radio"><span class="icon">📻</span> Рация департамента</a></li>
+        <li><a data-section="rp"><span class="icon">📝</span> RP Отыгровки</a></li>
+        <li><a data-section="dictionary"><span class="icon">📖</span> Справочник (НПА)</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content" id="mainContent">
+      <div class="section-header">
+        <h1 id="sectionTitle">СВУ / Разминирование</h1>
+        <div class="breadcrumb">Главная / <span id="breadcrumbPath">СВУ</span></div>
+      </div>
+      <div class="tabs" id="tabsContainer"></div>
+      <div id="tabContentArea"></div>
+    </main>
+
+    <div class="site-footer">
+      Created by: <a href="#" target="_blank">Brian_Taylor</a>
+    </div>
+
+    <div class="watermark-badge">
+      Created by: <span>Brian_Taylor</span>
+    </div>
   </div>
 
   <script>
+    // Генерация звёзд
+    const starsContainer = document.getElementById('starsContainer');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 3 + 1;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      starsContainer.appendChild(star);
+    }
+
+    function enterSite() {
+      document.getElementById('landing').classList.add('hidden');
+      document.getElementById('app').style.display = 'flex';
+    }
+
+    // Контент методички
     (function() {
       const contentData = {
         svu: {
@@ -558,7 +746,7 @@
                 <h3>🔧 Справочник устройств</h3>
                 <ul>
                   <li><strong>БРВУ "Пелена 12-М"</strong> — блокиратор радиовзрывных устройств. Создаёт помехи в радиусе 60 метров, предотвращая дистанционный подрыв.</li>
-                  <li><strong>ДРП (Детектор радиопомех)</strong> — устройство для поиска ВУ. Три лампы: <span style="color:#f85149">красная</span> (15–30 м), <span style="color:#d29922">жёлтая</span> (5–15 м), <span style="color:#3fb950">зелёная</span> (0–5 м).</li>
+                  <li><strong>ДРП (Детектор радиопомех)</strong> — устройство для поиска ВУ. Три лампы: <span style="color:#ff3131">красная</span> (15–30 м), <span style="color:#ffaa00">жёлтая</span> (5–15 м), <span style="color:#00ff88">зелёная</span> (0–5 м).</li>
                   <li><strong>КТЗ "Дублон-2"</strong> — костюм телесной защиты сапёра. Защищает жизненно важные органы при подрыве.</li>
                   <li><strong>ЭТЦ-3</strong> — тяжёлый взрывозащитный контейнер (до 360 кг). Для длительных перевозок.</li>
                   <li><strong>Локализатор "Фонтан-2"</strong> — лёгкий контейнер (30–40 кг). Для коротких дистанций.</li>
@@ -625,7 +813,7 @@
                 <p><strong>Этап 1: Поиск и подготовка</strong></p>
                 <ol>
                   <li>/me достаёт ДРП из багажника, включает, смотрит на лампу.</li>
-                  <li>/do Какой цвет горит на лампочке? — <span style="color:#f85149">Красный</span>: двигаться в сторону увеличения сигнала, продолжать опрос. <span style="color:#d29922">Жёлтый</span>: замедлиться, СВУ близко. <span style="color:#3fb950">Зелёный</span>: СВУ в пределах видимости.</li>
+                  <li>/do Какой цвет горит на лампочке? — <span style="color:#ff3131">Красный</span>: двигаться в сторону увеличения сигнала, продолжать опрос. <span style="color:#ffaa00">Жёлтый</span>: замедлиться, СВУ близко. <span style="color:#00ff88">Зелёный</span>: СВУ в пределах видимости.</li>
                   <li>/me выключает ДРП, убирает. Возвращается к машине, вместе с напарником берёт Пелену-12, устанавливает и включает.</li>
                 </ol>
                 <p><strong>Этап 2: Осмотр корпуса</strong></p>
@@ -633,7 +821,7 @@
                   <li>/do Сколько болтов я вижу на крышке? — Отыгровщик называет количество (обычно 3 или 4).</li>
                   <li>/me индикаторной отвёрткой откручивает болты.</li>
                   <li>/me аккуратно приподнимает крышку, светит фонариком внутрь.</li>
-                  <li>/do Есть ли под крышкой ловушка (леска, контакт)? — <span style="color:#3fb950">Нет</span>: продолжаем. <span style="color:#f85149">Да</span>: обнаружена леска, ведущая к взрывателю. /me изолированным ножом перерезает леску.</li>
+                  <li>/do Есть ли под крышкой ловушка (леска, контакт)? — <span style="color:#00ff88">Нет</span>: продолжаем. <span style="color:#ff3131">Да</span>: обнаружена леска, ведущая к взрывателю. /me изолированным ножом перерезает леску.</li>
                 </ol>
                 <p><strong>Этап 3: Анализ проводов</strong></p>
                 <ol>
@@ -652,7 +840,7 @@
                 <p><strong>Этап 5: Извлечение заряда</strong></p>
                 <ol>
                   <li>/me изолированным ножом вынимает тротиловую шашку, отделяет взрыватель, затем капсюль.</li>
-                  <li>/do Взрыватель деактивирован? — <span style="color:#3fb950">Да</span>: СВУ обезврежено. <span style="color:#f85149">Нет</span>: остаточный заряд → немедленно в контейнер!</li>
+                  <li>/do Взрыватель деактивирован? — <span style="color:#00ff88">Да</span>: СВУ обезврежено. <span style="color:#ff3131">Нет</span>: остаточный заряд → немедленно в контейнер!</li>
                   <li>/me укладывает компоненты в контейнер, закрывает. Вывозит на полигон ВЧ.</li>
                 </ol>
               </div>
@@ -662,7 +850,7 @@
                 <p><strong>Этап 1: Поиск и подготовка</strong></p>
                 <ol>
                   <li>/me достаёт ДРП из багажника, включает, смотрит на лампу.</li>
-                  <li>/do Какой цвет горит на лампочке? — <span style="color:#f85149">Красный</span>: двигаться в сторону увеличения сигнала, продолжать опрос. <span style="color:#d29922">Жёлтый</span>: замедлиться, СВУ близко. <span style="color:#3fb950">Зелёный</span>: СВУ в пределах видимости.</li>
+                  <li>/do Какой цвет горит на лампочке? — <span style="color:#ff3131">Красный</span>: двигаться в сторону увеличения сигнала, продолжать опрос. <span style="color:#ffaa00">Жёлтый</span>: замедлиться, СВУ близко. <span style="color:#00ff88">Зелёный</span>: СВУ в пределах видимости.</li>
                   <li>/me выключает ДРП, убирает. Возвращается к машине, вместе с напарником берёт Пелену-12, устанавливает и включает.</li>
                 </ol>
                 <p><strong>Этап 2: Осмотр корпуса</strong></p>
@@ -670,7 +858,7 @@
                   <li>/do Сколько болтов я вижу на крышке? — Отыгровщик называет количество (обычно 3 или 4).</li>
                   <li>/me индикаторной отвёрткой откручивает болты.</li>
                   <li>/me аккуратно приподнимает крышку, светит фонариком внутрь.</li>
-                  <li>/do Есть ли под крышкой ловушка (леска, контакт)? — <span style="color:#3fb950">Нет</span>: продолжаем. <span style="color:#f85149">Да</span>: обнаружена леска, ведущая к взрывателю. /me изолированным ножом перерезает леску.</li>
+                  <li>/do Есть ли под крышкой ловушка (леска, контакт)? — <span style="color:#00ff88">Нет</span>: продолжаем. <span style="color:#ff3131">Да</span>: обнаружена леска, ведущая к взрывателю. /me изолированным ножом перерезает леску.</li>
                 </ol>
                 <p><strong>Этап 3: Анализ проводов</strong></p>
                 <ol>
@@ -689,7 +877,7 @@
                 <p><strong>Этап 5: Извлечение заряда</strong></p>
                 <ol>
                   <li>/me изолированным ножом вынимает тротиловую шашку, отделяет взрыватель, затем капсюль.</li>
-                  <li>/do Взрыватель деактивирован? — <span style="color:#3fb950">Да</span>: СВУ обезврежено. <span style="color:#f85149">Нет</span>: остаточный заряд → немедленно в контейнер!</li>
+                  <li>/do Взрыватель деактивирован? — <span style="color:#00ff88">Да</span>: СВУ обезврежено. <span style="color:#ff3131">Нет</span>: остаточный заряд → немедленно в контейнер!</li>
                   <li>/me укладывает компоненты в контейнер, закрывает. Вывозит на полигон ВЧ.</li>
                 </ol>
               </div>
@@ -1021,7 +1209,7 @@
                   <li>/me визуально осматривает леску, корпус гранаты.</li>
                   <li>/me обхватывает гранату, палец в кольцо.</li>
                   <li>/me сжимает, наклоняет, разводит усики шплинта.</li>
-                  <li>/do Чека упала? — <span style="color:#3fb950">Да.</span></li>
+                  <li>/do Чека упала? — <span style="color:#00ff88">Да.</span></li>
                   <li>/me бокорезами перекусывает леску, извлекает чеку.</li>
                   <li>/me вставляет чеку обратно, фиксирует.</li>
                 </ol>
